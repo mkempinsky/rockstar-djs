@@ -1,23 +1,65 @@
 import {scrollToElement} from '../../lib/utils';
+import Link from 'next/link';
+import {withRouter} from 'next/router';
+import {useRouter} from 'next/router';
 
 const NavDesktop = (props) => {
+    const router = useRouter();
+    const pathname = props?.router?.pathname || '';
+
+    const handleRouting = (section) => {
+        console.log('section:', section);
+        if (pathname === '/') {
+            scrollToElement(section);
+        } else {
+            router.push(`/#${section}`, '');
+        }
+    };
     return (
         <div className="nav-desktop">
             <div className="knot-container">
                 <img src="/knot_hall_of_fame.png" width="120" height="auto" />
             </div>
             <div className="link-container">
+                <div className="logo">
+                    <div>
+                        <Link href="/">
+                            <a>
+                                <img src="RSDJS_horizontal_logo.png" />
+                            </a>
+                        </Link>
+                        <div>Let's create your dream celebration</div>
+                    </div>
+                </div>
                 <ul>
-                    <li onClick={() => scrollToElement('section-why')}>Why</li>
-                    <li onClick={() => scrollToElement('section-djs')}>DJs</li>
-                    <li onClick={() => scrollToElement('section-packages')}>Packages</li>
-                    <li onClick={() => scrollToElement('section-gallery')}>Gallery</li>
-                    <li onClick={() => scrollToElement('section-photo-booth')}>
+                    <li onClick={() => handleRouting('section-why')}>Why</li>
+                    <li onClick={() => handleRouting('section-djs')}>DJs</li>
+                    <li onClick={() => handleRouting('section-packages')}>Packages</li>
+                    <li onClick={() => handleRouting('section-gallery')}>Gallery</li>
+                    <li onClick={() => handleRouting('section-photo-booth')}>
                         Photo Booth
                     </li>
-                    <li onClick={() => scrollToElement('section-faq')}>FAQ</li>
                     <li>
-                        <button>Read our reviews on the knot</button>
+                        <Link href="/faqs">
+                            <a
+                                title="FAQ"
+                                style={{color: '#fff', textDecoration: 'none'}}>
+                                FAQ
+                            </a>
+                        </Link>
+                    </li>
+                    <li>
+                        <a
+                            className="knot-link"
+                            href="https://www.theknot.com/marketplace/rockstar-djs-ballwin-mo-552134#reviews-area"
+                            target="blank"
+                            title="Read Our Reviews On the Knot">
+                            <img
+                                src="/the_knot-btn.png"
+                                alt="The Knot Reviews"
+                                width="160"
+                            />
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -37,6 +79,22 @@ const NavDesktop = (props) => {
                             rgba(0, 0, 0, 1) 0%,
                             rgba(0, 0, 0, 0) 100%
                         );
+                        display: flex;
+                        justify-content: space-between;
+                    }
+                    .logo {
+                        display: flex;
+                        align-items: center;
+                        padding-left: 30px;
+                        color: var(--orange);
+                        font-family: var(--font-primary);
+                        font-size: 12px;
+                        font-weight: bold;
+                        text-transform: capitalize;
+                    }
+                    .logo img {
+                        margin-bottom: 5px;
+                        display: block;
                     }
                     ul {
                         margin: 0;
@@ -72,12 +130,13 @@ const NavDesktop = (props) => {
                     .knot-container {
                         position: relative;
                     }
-                    .knot-container > img {
-                        position: fixed;
+                    .knot-link {
+                        display: flex;
+                        align-items: center;
                     }
                 `}
             </style>
         </div>
     );
 };
-export default NavDesktop;
+export default withRouter(NavDesktop);

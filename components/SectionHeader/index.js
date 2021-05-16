@@ -4,7 +4,7 @@ const SectionHeader = ({title = '', subtitle = ''}) => {
     return (
         <div className="header-container">
             <h2>{title}</h2>
-            <h4>{subtitle}</h4>
+            {subtitle && <h4>{subtitle}</h4>}
             <style jsx>
                 {`
                     .header-container {

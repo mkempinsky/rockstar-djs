@@ -2,7 +2,7 @@ import {BREAKPOINT} from '../../lib/styles';
 
 const Container = (props) => {
     return (
-        <div className="container">
+        <div className="container" style={props.style}>
             {props.children}
             <style jsx>
                 {`

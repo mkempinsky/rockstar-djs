@@ -7,10 +7,12 @@ const SectionWhy = (props) => {
     const ref = useRef();
     const onScreen = useOnScreen(ref, '');
 
-    const animatedClass = onScreen ? 'animate__animated animate__fadeInUpBig' : '';
+    const animatedClass = onScreen
+        ? 'animate__animated animate__fadeIn animate__delay-1s'
+        : '';
 
     return (
-        <setction id="section-why" ref={ref}>
+        <section id="section-why" ref={ref}>
             <Container>
                 <SectionHeader
                     title="Why Choose Us"
@@ -89,7 +91,7 @@ const SectionWhy = (props) => {
                     }
                 `}
             </style>
-        </setction>
+        </section>
     );
 };
 export default SectionWhy;

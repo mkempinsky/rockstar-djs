@@ -7,6 +7,9 @@ import {
     SectionWhy,
     SectionPayment,
     SectionDjs,
+    SectionPackages,
+    SectionGallery,
+    SectionFacebook,
 } from '../components/Sections';
 
 const HomePage = (props) => {
@@ -16,9 +19,10 @@ const HomePage = (props) => {
     return (
         <Layout>
             <Head>
-                <title>Valor Program</title>
-                <meta name="title" content="Valor Program" />
-                <meta name="description" content="" />
+                <title>Rockstar DJs | St.Louis, MO</title>
+                <meta name="title" content="Rockstar DJs | St.Louis, MO" />
+                <meta property="og:url" content="http://rockstardjs.com" />
+                <meta name="description" content="LET US MAKE YOUR DAY PERFECT!" />
             </Head>
             <HeroSlider />
             <SectionIntro />
@@ -26,8 +30,9 @@ const HomePage = (props) => {
             <SectionWhy />
             <SectionPayment />
             <SectionDjs />
-            <section id="section-packages">DJs</section>
-            <section id="section-gallery">DJs</section>
+            <SectionPackages />
+            <SectionGallery />
+            <SectionFacebook />
             <section id="section-photo-booth">DJs</section>
             <section id="section-faq">DJs</section>
         </Layout>

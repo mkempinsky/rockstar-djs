@@ -3,6 +3,7 @@ import Nav from '../Nav';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import {BREAKPOINT} from '../../lib/styles';
+import ScrollToTop from '../ScrollToTop';
 
 Router.onRouteChangeStart = (url) => {
     NProgress.start();
@@ -20,6 +21,7 @@ const Layout = (props) => {
         <div className="layout">
             <Nav />
             {props.children}
+            <ScrollToTop />
             <Footer />
             <style jsx>{`
                 .layout {
