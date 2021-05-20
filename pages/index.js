@@ -15,7 +15,6 @@ import {
 const HomePage = (props) => {
     let djData = props?.data?.feed?.entry || [];
     djData = formatData(djData);
-    console.log('djData', djData);
     return (
         <Layout>
             <Head>
@@ -29,7 +28,7 @@ const HomePage = (props) => {
             <SectionReviews />
             <SectionWhy />
             <SectionPayment />
-            <SectionDjs />
+            <SectionDjs djData={djData} />
             <SectionPackages />
             <SectionGallery />
             <SectionFacebook />
@@ -44,7 +43,7 @@ export async function getServerSideProps(context) {
     let response = {};
 
     const url =
-        'https://spreadsheets.google.com/feeds/cells/1S9MylPyGaC3D1s1epdB4IPIUHIDDrBddp0ofEl470yo/1/public/full?alt=json';
+        'https://spreadsheets.google.com/feeds/cells/1IMW9uxy8jOAjq-rsSfrV9KPl7uN410hSgITQdEBKvV8/1/public/full?alt=json';
 
     let data = [];
     response = {};
@@ -63,25 +62,36 @@ export async function getServerSideProps(context) {
 }
 
 const formatData = (data) => {
-    console.log('data', data);
-
-    let formated = [];
     let rowValues = [];
 
+    // get first row - use as keys
+    let firstRow = Array.isArray(data) && data.filter((x) => x?.gs$cell?.row == 1);
+    firstRow = firstRow.map((item) => {
+        return {column: item?.gs$cell?.col, value: item?.gs$cell?.inputValue};
+    });
+
+    // format
     Array.isArray(data) &&
         data.map((item, index) => {
+            // skip row 1
+            if (index === 0) return;
             const row = item?.gs$cell?.row || 0;
             const prevRow = data[index - 1]?.gs$cell?.row || 0;
+
             if (row !== prevRow) {
                 const itemsInRow = data.filter((x) => x?.gs$cell?.row === row);
 
-                rowValues.push({[row]: itemsInRow});
+                let obj = {};
+                firstRow.map((x) => {
+                    const column = x?.column;
+                    const columnName = x?.value;
+                    let value = itemsInRow.find((x) => x?.gs$cell?.col === column);
+                    value = value?.gs$cell?.inputValue || null;
+                    obj = {...obj, [columnName]: value};
+                    return;
+                });
+                rowValues.push(obj);
             }
-        });
-
-    Array.isArray(rowValues) &&
-        rowValues.map((item, index) => {
-            console.log('item', item);
         });
 
     return rowValues;

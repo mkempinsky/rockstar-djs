@@ -76,8 +76,11 @@ const NavDesktop = (props) => {
                     .link-container {
                         background: linear-gradient(
                             to bottom,
-                            rgba(0, 0, 0, 1) 0%,
-                            rgba(0, 0, 0, 0) 100%
+                            rgb(20, 30, 48),
+                            rgba(20, 30, 48, 0.9),
+                            rgba(20, 30, 48, 0.6),
+                            rgba(20, 30, 48, 0.3),
+                            transparent
                         );
                         display: flex;
                         justify-content: space-between;

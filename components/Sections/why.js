@@ -2,6 +2,7 @@ import Container from '../Container';
 import SectionHeader from '../SectionHeader';
 import {useRef} from 'react';
 import useOnScreen from '../../lib/hooks/useOnScreen';
+import {BREAKPOINT} from '../../lib/styles';
 
 const SectionWhy = (props) => {
     const ref = useRef();
@@ -69,13 +70,24 @@ const SectionWhy = (props) => {
             <style jsx>
                 {`
                     .card-container {
-                        display: grid;
-                        grid-template-columns: 1fr 1fr 1fr;
-                        grid-gap: 60px;
-                        align-items: flex-start;
+                        display: block;
+                    }
+                    @media screen and (min-width: ${BREAKPOINT}) {
+                        .card-container {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr 1fr;
+                            grid-gap: 60px;
+                            align-items: flex-start;
+                        }
                     }
                     .card {
                         border-bottom: 3px solid var(--interactive);
+                        margin-bottom: 30px;
+                    }
+                    @media screen and (min-width: ${BREAKPOINT}) {
+                        .card {
+                            margin-bottom: 0px;
+                        }
                     }
                     .card .img {
                         margin-bottom: 30px;

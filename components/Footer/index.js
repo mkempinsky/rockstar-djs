@@ -3,6 +3,7 @@ import Link from 'next/link';
 import IconPhone from '../Svgs/icon-phone';
 import IconMail from '../Svgs/icon-mail';
 import IconLocation from '../Svgs/icon-location';
+import {BREAKPOINT} from '../../lib/styles';
 
 const Footer = (props) => {
     const date = new Date();
@@ -81,28 +82,45 @@ const Footer = (props) => {
                     }
                     .footer__top {
                         background: #202020;
+                        padding: 30px 15px;
                     }
                     .footer__bottom {
                         background: #000;
                     }
                     .contact-container {
-                        height: 60px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
+                        display: block;
+                    }
+                    @media screen and (min-width: ${BREAKPOINT}) {
+                        .contact-container {
+                            height: 60px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                        }
                     }
                     .contact-container > div:first-child {
-                        display: flex;
-                        align-items: center;
+                        display: block;
+                    }
+                    @media screen and (min-width: ${BREAKPOINT}) {
+                        .contact-container > div:first-child {
+                            display: flex;
+                            align-items: center;
+                        }
                     }
                     .contact-container > div:first-child > div {
                         margin-right: 50px;
                     }
                     .logo-container {
-                        height: 100px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
+                        padding: 30px 0;
+                        display: block;
+                        text-align: center;
+                    }
+                    @media screen and (min-width: ${BREAKPOINT}) {
+                        .logo-container {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                        }
                     }
                 `}
             </style>

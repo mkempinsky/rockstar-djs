@@ -1,3 +1,4 @@
+import {BREAKPOINT} from '../../lib/styles';
 import Container from '../Container';
 
 const paymentLink = 'https://simplecheckout.authorize.net/payment/CatalogPayment.aspx';
@@ -34,14 +35,21 @@ const SectionPayment = (props) => {
                         margin-bottom: 30px;
                     }
                     .button-container {
-                        display: grid;
-                        grid-template-columns: auto auto;
-                        grid-gap: 60px;
-                        justify-content: center;
+                        display: block;
+                    }
+                    @media screen and (min-width: ${BREAKPOINT}) {
+                        .button-container {
+                            display: grid;
+                            grid-template-columns: auto auto;
+                            grid-gap: 60px;
+                            justify-content: center;
+                        }
                     }
                     a {
                         background: var(--gray-400);
-                        width: 400px;
+                        max-width: 400px;
+                        min-width: 400px;
+                        width: 100%;
                         display: block;
                         border-radius: 5px;
                         height: 45px;
@@ -54,6 +62,7 @@ const SectionPayment = (props) => {
                         cursor: pointer;
                         color: #fff;
                         text-decoration: none;
+                        margin-bottom: 30px;
                     }
                     a:hover {
                         background: var(--orange);

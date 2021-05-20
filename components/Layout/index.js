@@ -20,7 +20,7 @@ const Layout = (props) => {
     return (
         <div className="layout">
             <Nav />
-            {props.children}
+            <div className="page-content">{props.children}</div>
             <ScrollToTop />
             <Footer />
             <style jsx>{`
@@ -30,6 +30,9 @@ const Layout = (props) => {
                 @media screen and (min-width: ${BREAKPOINT}) {
                     .layout {
                         padding-top: 0;
+                }
+                .page-content {
+                    min-height: 100vh;
                 }
             `}</style>
         </div>

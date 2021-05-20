@@ -1,12 +1,22 @@
+import {BREAKPOINT} from '../../lib/styles';
 import Container from '../Container';
 import SectionHeader from '../SectionHeader';
+import useOnScreen from '../../lib/hooks/useOnScreen';
+import {useRef} from 'react';
 
 const SectionPackages = (props) => {
+    const ref = useRef();
+    const onScreen = useOnScreen(ref, '');
+
+    const animatedClass = onScreen
+        ? 'animate__animated animate__fadeIn animate__delay-1s'
+        : '';
+
     return (
         <section id="section-packages">
             <Container>
                 <SectionHeader title="Packages" />
-                <div className="card-container">
+                <div ref={ref} className={`card-container ${animatedClass}`}>
                     <div className="card">
                         <img src="/standard_package.gif" />
                         <div className="card__title">
@@ -67,9 +77,14 @@ const SectionPackages = (props) => {
                         background: var(--gray-100);
                     }
                     .card-container {
-                        display: grid;
-                        grid-template-columns: 1fr 1fr 1fr;
-                        grid-gap: 30px;
+                        display: block;
+                    }
+                    @media screen and (min-width: ${BREAKPOINT}) {
+                        .card-container {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr 1fr;
+                            grid-gap: 30px;
+                        }
                     }
                     .card {
                         width: 100%;
@@ -77,7 +92,13 @@ const SectionPackages = (props) => {
                         border-radius: 5px;
                         border: 1px solid var(--gray-200);
                         padding: 15px;
+                        margin-bottom: 30px;
                         box-shadow: 0px 2px 16px rgba(000, 000, 000, 0.1);
+                    }
+                    @media screen and (min-width: ${BREAKPOINT}) {
+                        .card {
+                            margin-bottom: 0px;
+                        }
                     }
                     .card img {
                         margin: 0 auto;

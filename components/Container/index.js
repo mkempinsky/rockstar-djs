@@ -7,7 +7,7 @@ const Container = (props) => {
             <style jsx>
                 {`
                     .container {
-                        padding: 30px 20px 30px 150px;
+                        padding: 30px 20px;
                     }
                     @media screen and (min-width: ${BREAKPOINT}) {
                         .container {

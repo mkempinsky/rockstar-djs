@@ -1,6 +1,6 @@
 import Container from '../components/Container';
 import Layout from '../components/Layout';
-import HeroSlider from '../components/HeroSlider';
+import PageHeader from '../components/PageHeader';
 import FaqCard from '../components/FaqCard';
 import {BREAKPOINT} from '../lib/styles';
 import {useEffect} from 'react';
@@ -10,7 +10,7 @@ const Faqs = (props) => {
     return (
         <div>
             <Layout>
-                <HeroSlider />
+                <PageHeader />
 
                 <Container>
                     <h1 id="page-faqs-header">FAQs</h1>
