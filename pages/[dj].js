@@ -1,5 +1,4 @@
 import {useRouter} from 'next/router';
-import HeroSlider from '../components/HeroSlider';
 import Layout from '../components/Layout';
 
 const Post = () => {
