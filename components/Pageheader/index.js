@@ -1,4 +1,5 @@
 const PageHeader = () => {
+    console.log('pageheader');
     return (
         <>
             <div className="header" />
