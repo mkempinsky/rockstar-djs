@@ -1,6 +1,6 @@
 import Container from '../components/Container';
 import Layout from '../components/Layout';
-import PageHeader from '../components/PageHeader';
+import PageHeading from '../components/PageHeading';
 import FaqCard from '../components/FaqCard';
 import {BREAKPOINT} from '../lib/styles';
 import {useEffect} from 'react';
@@ -10,7 +10,7 @@ const Faqs = (props) => {
     return (
         <div>
             <Layout>
-                <PageHeader />
+                <PageHeading />
 
                 <Container>
                     <h1 id="page-faqs-header">FAQs</h1>

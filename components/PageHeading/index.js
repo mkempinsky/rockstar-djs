@@ -1,4 +1,4 @@
-const PageHeader = () => {
+const PageHeading = () => {
     console.log('pageheader');
     return (
         <>
@@ -24,4 +24,4 @@ const PageHeader = () => {
     );
 };
 
-export default PageHeader;
+export default PageHeading;
