@@ -49,6 +49,7 @@ const SectionPayment = (props) => {
                         background: var(--gray-400);
                         max-width: 100%;
                         width: 100%;
+                        min-width: 300px;
                         display: block;
                         border-radius: 5px;
                         height: 45px;

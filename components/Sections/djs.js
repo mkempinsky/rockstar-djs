@@ -31,8 +31,8 @@ const SectionDjs = ({djData = []}) => {
                                                 <img
                                                     className="dj__img"
                                                     src={imgSrc}
-                                                    width="200px"
-                                                    height="200px"
+                                                    width="100%"
+                                                    height="auto"
                                                 />
                                             </a>
                                         </Link>
@@ -81,7 +81,7 @@ const SectionDjs = ({djData = []}) => {
                         margin: 0 auto 24px auto;
                     }
                     @media screen and (min-width: ${BREAKPOINT}) {
-                        .dj__image {
+                        .dj__img {
                             width: 300px;
                             height: 300px;
                             border: 5px solid var(--gray-300);
