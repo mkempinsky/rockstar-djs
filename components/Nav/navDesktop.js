@@ -8,7 +8,6 @@ const NavDesktop = (props) => {
     const pathname = props?.router?.pathname || '';
 
     const handleRouting = (section) => {
-        console.log('section:', section);
         if (pathname === '/') {
             scrollToElement(section);
         } else {
@@ -36,7 +35,7 @@ const NavDesktop = (props) => {
                     <li onClick={() => handleRouting('section-djs')}>DJs</li>
                     <li onClick={() => handleRouting('section-packages')}>Packages</li>
                     <li onClick={() => handleRouting('section-gallery')}>Gallery</li>
-                    <li onClick={() => handleRouting('section-photo-booth')}>
+                    <li onClick={() => handleRouting('section-photobooth')}>
                         Photo Booth
                     </li>
                     <li>

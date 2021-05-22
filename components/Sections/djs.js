@@ -1,6 +1,7 @@
 import Container from '../Container';
 import SectionHeader from '../SectionHeader';
 import Link from 'next/link';
+import {BREAKPOINT} from '../../lib/styles';
 
 /// https://drive.google.com/uc?id=FILE_ID
 
@@ -61,17 +62,31 @@ const SectionDjs = ({djData = []}) => {
                 {`
                     .dj-container {
                         display: grid;
-                        grid-template-columns: 1fr 1fr 1fr;
-                        grid-gap: 60px;
+                        grid-gap: 30px;
+
+                        grid-template-columns: repeat(2, 1fr);
+                    }
+                    @media screen and (min-width: ${BREAKPOINT}) {
+                        .dj-container {
+                            grid-gap: 60px;
+                            grid-template-columns: repeat(3, 1fr);
+                        }
                     }
                     .dj__img {
                         border-radius: 100%;
-                        width: 300px;
-                        height: 300px;
+                        width: 150px;
+                        height: 150px;
                         text-align: center;
                         display: flex;
-                        border: 5px solid var(--gray-300);
+                        border: 3px solid var(--gray-300);
                         margin: 0 auto 24px auto;
+                    }
+                    @media screen and (min-width: ${BREAKPOINT}) {
+                        .dj__image {
+                            width: 300px;
+                            height: 300px;
+                            border: 5px solid var(--gray-300);
+                        }
                     }
                     .dj__img:hover {
                         cursor: pointer;

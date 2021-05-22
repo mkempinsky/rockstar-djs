@@ -13,7 +13,7 @@ const galleryImages = [
 
 const SectionPhotoBooth = (props) => {
     return (
-        <section id="section-reviews">
+        <section id="section-photobooth">
             <div className="">
                 <Container>
                     <SectionHeader title="Photo Booth" />

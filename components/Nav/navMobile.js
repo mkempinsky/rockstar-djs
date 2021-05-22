@@ -1,18 +1,32 @@
 import {contactEmail} from '../../lib/globals';
 import {useState} from 'react';
 import Link from 'next/link';
-import Button from '../Button';
 import {scrollToElement} from '../../lib/utils';
+import {useRouter} from 'next/router';
 
 const NavMobile = (props) => {
     const [showSlidout, toggleSlideOut] = useState(false);
+
+    const router = useRouter();
+    const pathname = router?.pathname || '';
+
+    console.log(pathname);
+
+    const handleRouting = (section) => {
+        console.log('section:', section);
+        if (pathname === '/') {
+            scrollToElement(section, 100);
+        } else {
+            router.push(`/#${section}`, '');
+        }
+    };
     return (
         <nav>
             <div className="nav__banner">
                 <Link href="/">
                     <a>
                         <div className="nav__title">
-                            <img src="/valor-logo.png" width="200px" />
+                            <img src="/RSDJS_horizontal_logo.png" width="200px" />
                         </div>
                     </a>
                 </Link>
@@ -27,19 +41,33 @@ const NavMobile = (props) => {
             <div className={`nav__slideout ${showSlidout ? 'active' : ''}`}>
                 <div onClick={() => toggleSlideOut(false)}>
                     <ul>
-                        <li onClick={() => scrollToElement('section-why')}>Why</li>
-                        <li onClick={() => scrollToElement('section-why')}>DJs</li>
-                        <li onClick={() => scrollToElement('section-why')}>Packages</li>
-                        <li onClick={() => scrollToElement('section-why')}>Gallery</li>
-                        <li onClick={() => scrollToElement('section-why')}>
+                        <li onClick={() => handleRouting('section-why')}>Why</li>
+                        <li onClick={() => handleRouting('section-djs')}>DJs</li>
+                        <li onClick={() => handleRouting('section-packages')}>
+                            Packages
+                        </li>
+                        <li onClick={() => handleRouting('section-gallery')}>Gallery</li>
+                        <li onClick={() => handleRouting('section-photobooth')}>
                             Photo Booth
                         </li>
-                        <li onClick={() => scrollToElement('section-why')}>FAQ</li>
+                        <li>
+                            <Link href="/faqs">
+                                <a
+                                    title="FAQ"
+                                    style={{color: '#000', textDecoration: 'none'}}>
+                                    FAQ
+                                </a>
+                            </Link>
+                        </li>
                     </ul>
                 </div>
                 <div className="nav__survey">
-                    <a href="/" title="Start Survey">
-                        <Button>Start Survey</Button>
+                    <a
+                        className="knot-link"
+                        href="https://www.theknot.com/marketplace/rockstar-djs-ballwin-mo-552134#reviews-area"
+                        target="blank"
+                        title="Read Our Reviews On the Knot">
+                        <img src="/the_knot-btn.png" alt="The Knot Reviews" width="160" />
                     </a>
                 </div>
                 <div className="nav__contact">
@@ -70,7 +98,7 @@ const NavMobile = (props) => {
                         top: 0;
                         z-index: 10;
                         width: 100%;
-                        background: #fff;
+                        background: #000;
                         box-shadow: 2px 0px 10px rgba(000, 000, 000, 0.3);
                     }
                     .nav__banner a {
@@ -78,6 +106,19 @@ const NavMobile = (props) => {
                         text-decoration: none;
                         font-family: var(--font-primary);
                         font-weight: 700;
+                    }
+                    ul {
+                        padding-top: 60px;
+                    }
+                    li {
+                        text-align: center;
+                        font-size: 18px;
+                        font-weight: bold;
+                        height: 50px;
+                        border-bottom: 1px solid var(--interactive);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                     }
                     .nav__slideout {
                         position: fixed;
@@ -101,7 +142,7 @@ const NavMobile = (props) => {
                     }
 
                     .nav__menu-icon span {
-                        background: var(--primary);
+                        background: var(--orange);
                         border-radius: 10px;
                         width: 100%;
                         height: 3px;
@@ -127,6 +168,9 @@ const NavMobile = (props) => {
                     .nav__contact {
                         margin: 20px auto;
                         text-align: center;
+                    }
+                    .nav__contact a {
+                        color: var(--orange);
                     }
                 `}
             </style>

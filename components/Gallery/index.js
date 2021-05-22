@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {BREAKPOINT} from '../../lib/styles';
 import Modal from '../Modal';
 import Slider from '../Slider';
 
@@ -17,39 +18,56 @@ const Gallery = ({images = [], columns = 3}) => {
     };
     return (
         <div className="gallery">
-            <div className="gallery__container">
-                {Array.isArray(images) &&
-                    images.map((image, index) => {
-                        return (
+            <div className="gallery--desktop">
+                <div className="gallery__container">
+                    {Array.isArray(images) &&
+                        images.map((image, index) => {
+                            return (
+                                <div
+                                    key={image}
+                                    onClick={() => handleImageModal(index)}
+                                    className="gallery__image"
+                                    style={{backgroundImage: `url(${image})`}}>
+                                    <div className="gallery__image--overlay" />
+                                </div>
+                            );
+                        })}
+                </div>
+                {showModal && (
+                    <Modal onClickOutside={() => handleShowModal(false)}>
+                        <div className="slider-container">
+                            <Slider
+                                enableKeyboardNavigation
+                                currentIndex={imageIndex}
+                                slides={images.map((image) => {
+                                    return (props) => (
+                                        <div
+                                            key={image}
+                                            style={{backgroundImage: `url(${image})`}}
+                                            className="slider-img"
+                                        />
+                                    );
+                                })}
+                            />
+                        </div>
+                    </Modal>
+                )}
+            </div>
+            <div className="gallery--mobile">
+                <Slider
+                    enableKeyboardNavigation
+                    currentIndex={imageIndex}
+                    slides={images.map((image) => {
+                        return (props) => (
                             <div
                                 key={image}
-                                onClick={() => handleImageModal(index)}
-                                className="gallery__image"
-                                style={{backgroundImage: `url(${image})`}}>
-                                <div className="gallery__image--overlay" />
-                            </div>
+                                style={{backgroundImage: `url(${image})`}}
+                                className="slider-img"
+                            />
                         );
                     })}
+                />
             </div>
-            {showModal && (
-                <Modal onClickOutside={() => handleShowModal(false)}>
-                    <div className="slider-container">
-                        <Slider
-                            enableKeyboardNavigation
-                            currentIndex={imageIndex}
-                            slides={images.map((image) => {
-                                return (props) => (
-                                    <div
-                                        key={image}
-                                        style={{backgroundImage: `url(${image})`}}
-                                        className="slider-img"
-                                    />
-                                );
-                            })}
-                        />
-                    </div>
-                </Modal>
-            )}
             <style jsx>
                 {`
                     .gallery {
@@ -99,6 +117,20 @@ const Gallery = ({images = [], columns = 3}) => {
 
                         background-size: cover;
                         background-position: center center;
+                    }
+                    .gallery--desktop {
+                        display: none;
+                    }
+                    .gallery--mobile {
+                        display: block;
+                    }
+                    @media screen and (min-width: ${BREAKPOINT}) {
+                        .gallery--desktop {
+                            display: block;
+                        }
+                        .gallery--mobile {
+                            display: none;
+                        }
                     }
                 `}
             </style>
