@@ -6,7 +6,6 @@ import {BREAKPOINT} from '../../lib/styles';
 /// https://drive.google.com/uc?id=FILE_ID
 
 const SectionDjs = ({djData = []}) => {
-    console.log(djData);
     return (
         <section id="section-djs">
             <Container>

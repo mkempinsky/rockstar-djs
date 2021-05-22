@@ -10,10 +10,8 @@ const NavMobile = (props) => {
     const router = useRouter();
     const pathname = router?.pathname || '';
 
-    console.log(pathname);
 
     const handleRouting = (section) => {
-        console.log('section:', section);
         if (pathname === '/') {
             scrollToElement(section, 100);
         } else {

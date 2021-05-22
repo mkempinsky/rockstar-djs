@@ -14,7 +14,7 @@ import {
     SectionPhotoBooth,
 } from '../components/Sections';
 import {formatGoogleSheetData} from '../lib/utils';
-import fetch from '../lib/fetch';
+import {djSpreadSheetUrl} from '../lib/globals';
 
 const HomePage = (props) => {
     const {data} = props;
@@ -47,7 +47,7 @@ export async function getServerSideProps(context) {
     let data = [];
     let response = {};
     try {
-        response = await fetch(context, '/api/djs');
+        response = await fetch(djSpreadSheetUrl);
         data = await response.json();
     } catch (e) {
         console.warn(e);
