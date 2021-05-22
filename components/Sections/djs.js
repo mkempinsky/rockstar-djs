@@ -63,7 +63,6 @@ const SectionDjs = ({djData = []}) => {
                     .dj-container {
                         display: grid;
                         grid-gap: 30px;
-
                         grid-template-columns: repeat(2, 1fr);
                     }
                     @media screen and (min-width: ${BREAKPOINT}) {
