@@ -1,12 +1,29 @@
-const Gallery = ({images = []}) => {
+import {useState} from 'react';
+import Modal from '../Modal';
+import Slider from '../Slider';
+
+const Gallery = ({images = [], columns = 3}) => {
+    const [showModal, handleShowModal] = useState(false);
+    const [imageIndex, updateImageIndex] = useState(0);
+
+    const handleImageModal = (index) => {
+        if (typeof index === 'undefined') {
+            handleShowModal(false);
+            return;
+        }
+        handleShowModal(true);
+        updateImageIndex(index);
+        return;
+    };
     return (
         <div className="gallery">
             <div className="gallery__container">
                 {Array.isArray(images) &&
-                    images.map((image) => {
+                    images.map((image, index) => {
                         return (
                             <div
                                 key={image}
+                                onClick={() => handleImageModal(index)}
                                 className="gallery__image"
                                 style={{backgroundImage: `url(${image})`}}>
                                 <div className="gallery__image--overlay" />
@@ -14,6 +31,25 @@ const Gallery = ({images = []}) => {
                         );
                     })}
             </div>
+            {showModal && (
+                <Modal onClickOutside={() => handleShowModal(false)}>
+                    <div className="slider-container">
+                        <Slider
+                            enableKeyboardNavigation
+                            currentIndex={imageIndex}
+                            slides={images.map((image) => {
+                                return (props) => (
+                                    <div
+                                        key={image}
+                                        style={{backgroundImage: `url(${image})`}}
+                                        className="slider-img"
+                                    />
+                                );
+                            })}
+                        />
+                    </div>
+                </Modal>
+            )}
             <style jsx>
                 {`
                     .gallery {
@@ -24,7 +60,7 @@ const Gallery = ({images = []}) => {
                     .gallery__container {
                         display: grid;
                         grid-gap: 30px;
-                        grid-template-columns: 1fr 1fr 1fr;
+                        grid-template-columns: repeat(${columns}, 1fr);
                     }
                     .gallery__image {
                         width: 100%;
@@ -51,6 +87,18 @@ const Gallery = ({images = []}) => {
                     .gallery__image:hover .gallery__image--overlay {
                         opacity: 1;
                         transition: all 0.25s;
+                    }
+                    .slider-container {
+                        background: #fff;
+                        border-radius: 5px;
+                    }
+                    .slider-img {
+                        width: 500px;
+                        height: 500px;
+                        border-radius: 5px 5px 0 0;
+
+                        background-size: cover;
+                        background-position: center center;
                     }
                 `}
             </style>

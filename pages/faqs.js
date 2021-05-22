@@ -3,8 +3,6 @@ import Layout from '../components/Layout';
 import PageHeading from '../components/PageHeading';
 import FaqCard from '../components/FaqCard';
 import {BREAKPOINT} from '../lib/styles';
-import {useEffect} from 'react';
-import {scrollToElement} from '../lib/utils';
 
 const Faqs = (props) => {
     return (

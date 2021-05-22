@@ -6,6 +6,8 @@ import SectionDjs from './djs';
 import SectionPackages from './packages';
 import SectionGallery from './gallery';
 import SectionFacebook from './facebook';
+import SectionUpgrades from './upgrades';
+import SectionPhotoBooth from './photo-booth';
 
 module.exports = {
     SectionIntro,
@@ -16,4 +18,6 @@ module.exports = {
     SectionPackages,
     SectionGallery,
     SectionFacebook,
+    SectionUpgrades,
+    SectionPhotoBooth,
 };
