@@ -4,13 +4,38 @@ import SectionHeader from '../SectionHeader';
 import useOnScreen from '../../lib/hooks/useOnScreen';
 import {useRef} from 'react';
 
-const SectionPackages = (props) => {
+const getPackageItems = (obj) => {
+    if (!obj || typeof obj !== 'object') return [];
+    let arr = [];
+    for (const [key, value] of Object.entries(obj)) {
+        if (key !== 'id' && key !== 'title' && value) {
+            arr.push(value);
+        }
+    }
+    return arr;
+};
+
+const SectionPackages = ({data = []}) => {
     const ref = useRef();
     const onScreen = useOnScreen(ref, '');
+    console.log(data);
+    // package one
+    const packageOne = data?.[0] || [];
+    const packageOneTitle = packageOne?.title || '';
+    const packageOneItems = getPackageItems(packageOne);
 
-    const animatedClass = onScreen
-        ? 'animate__animated animate__fadeIn animate__delay-1s'
-        : '';
+    // package two
+    const packageTwo = data?.[1] || [];
+    const packageTwoTitle = packageTwo?.title || '';
+    const packageTwoItems = getPackageItems(packageTwo);
+    console.log(packageTwoItems);
+
+    // package three
+    const packageThree = data?.[2] || [];
+    const packageThreeTitle = packageThree?.title || '';
+    const packageThreeItems = getPackageItems(packageThree);
+
+    const animatedClass = onScreen ? 'animate__animated animate__fadeIn ' : '';
 
     return (
         <section id="section-packages">
@@ -19,57 +44,61 @@ const SectionPackages = (props) => {
                 <div ref={ref} className={`card-container ${animatedClass}`}>
                     <div className="card">
                         <img src="/standard_package.gif" />
-                        <div className="card__title">
-                            4 Hours of the Most Professional and Polished Hosts/DJs in our
-                            Area!
-                        </div>
+                        <div
+                            className="card__title"
+                            dangerouslySetInnerHTML={{__html: packageOneTitle}}
+                        />
                         <ul>
-                            <li>Our Unlimited Digital Music Library</li>
-                            <li>Easy-to-use Online Planning Process</li>
-                            <li>Professional Sound and Lighting Display</li>
-                            <li>Includes Wireless Microphone</li>
+                            {Array.isArray(packageOneItems) &&
+                                packageOneItems.map((item, index) => {
+                                    return (
+                                        <li
+                                            key={item}
+                                            dangerouslySetInnerHTML={{__html: item}}
+                                        />
+                                    );
+                                })}
                         </ul>
                     </div>
                     <div className="card">
                         <img src="/premium_package.gif" />
-                        <div className="card__title">
-                            Everything Listed in our <br />
-                            Standard Package, plus...
-                        </div>
+                        <div
+                            className="card__title"
+                            dangerouslySetInnerHTML={{__html: packageTwoTitle}}
+                        />
                         <ul>
-                            <li>
-                                <div>Select Level DJ</div>
-                                <div className="card__note">
-                                    One of our absolute top-rated
-                                </div>
-                            </li>
-                            <li>
-                                <div>Room Lighting or *Ceremony Music</div>
-                                <div className="card__note">
-                                    * same location as reception
-                                </div>
-                            </li>
+                            {Array.isArray(packageTwoItems) &&
+                                packageTwoItems.map((item, index) => {
+                                    console.log(item);
+                                    return (
+                                        <li
+                                            key={item}
+                                            dangerouslySetInnerHTML={{__html: item}}
+                                        />
+                                    );
+                                })}
                         </ul>
                     </div>
                     <div className="card">
                         <img src="/rockstar_package.gif" />
-                        <div className="card__title">Make Your Celebration Amazing!</div>
+                        <div
+                            className="card__title"
+                            dangerouslySetInnerHTML={{__html: packageThreeTitle}}
+                        />{' '}
                         <ul>
-                            <li>
-                                <strong>Guaranteed choice of DJ</strong>
-                            </li>
-                            <li>
-                                <div>
-                                    Choice of Photobooth or Room Lighting and Ceremony
-                                    Music
-                                </div>
-                                <div className="card__note">
-                                    * same location as reception
-                                </div>
-                            </li>
+                            {Array.isArray(packageThreeItems) &&
+                                packageThreeItems.map((item, index) => {
+                                    return (
+                                        <li
+                                            key={item}
+                                            dangerouslySetInnerHTML={{__html: item}}
+                                        />
+                                    );
+                                })}
                         </ul>
                     </div>
                 </div>
+                <div className="disclaimer">* same location as reception</div>
             </Container>
             <style jsx>
                 {`
@@ -137,6 +166,12 @@ const SectionPackages = (props) => {
                     }
                     .card__note {
                         font-size: 12px;
+                    }
+                    .disclaimer {
+                        text-align: center;
+                        margin-top: 15px;
+                        font-size: 14px;
+                        color: #a1a1a1;
                     }
                 `}
             </style>

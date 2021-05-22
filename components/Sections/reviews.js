@@ -85,7 +85,12 @@ const SectionReviews = (props) => {
             <style jsx>
                 {`
                     .parallax {
-                        background-image: url('/mixer_board_BKG.jpeg');
+                        background: linear-gradient(
+                                to right,
+                                rgba(20, 30, 48, 0.9),
+                                rgba(36, 59, 85, 0.8)
+                            ),
+                            url('/dj_background.jpg');
                         min-height: 500px;
                         background-attachment: fixed;
                         background-position: center;

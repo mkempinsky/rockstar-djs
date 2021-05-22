@@ -55,10 +55,16 @@ const SectionPhotoBooth = (props) => {
                         margin-bottom: 30px;
                     }
                     .content-container {
-                        display: grid;
-                        grid-template-columns: 1fr 1fr;
-                        grid-gap: 60px;
-                        margin-bottom: 60px;
+                        display: block;
+                        margin-bottom: 30px;
+                    }
+                    @media screen and (min-width: ${BREAKPOINT}) {
+                        .content-container {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;
+                            grid-gap: 60px;
+                            margin-bottom: 60px;
+                        }
                     }
                     a {
                         background: var(--gray-300);
@@ -72,6 +78,7 @@ const SectionPhotoBooth = (props) => {
                         font-family: var(--font-primary);
                         border-radius: 5px;
                         text-align: center;
+                        margin-bottom: 30px;
                     }
                     a:hover {
                         background: #000;

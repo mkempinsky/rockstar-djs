@@ -65,6 +65,7 @@ const SectionIntro = (props) => {
                         font-family: var(--font-primary);
                         border-radius: 5px;
                         text-align: center;
+                        margin-bottom: 30px;
                     }
                     a:hover {
                         background: #000;

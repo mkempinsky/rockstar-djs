@@ -14,11 +14,19 @@ import {
     SectionPhotoBooth,
 } from '../components/Sections';
 import {formatGoogleSheetData} from '../lib/utils';
-import {djSpreadSheetUrl} from '../lib/globals';
+import {djSpreadSheetUrl, packagesSpreadsheetUrl} from '../lib/globals';
 
 const HomePage = (props) => {
     const {data} = props;
-    const djData = formatGoogleSheetData(data);
+
+    // dj data
+    let djData = data?.djData;
+    djData = formatGoogleSheetData(djData);
+
+    // packages data
+    let packagesData = data?.packageData;
+    packagesData = formatGoogleSheetData(packagesData);
+
     return (
         <Layout>
             <Head>
@@ -32,8 +40,8 @@ const HomePage = (props) => {
             <SectionReviews />
             <SectionWhy />
             <SectionPayment />
-            <SectionDjs djData={djData} />
-            <SectionPackages />
+            <SectionDjs data={djData} />
+            <SectionPackages data={packagesData} />
             <SectionGallery />
             <SectionFacebook />
             <SectionPhotoBooth />
@@ -44,18 +52,32 @@ const HomePage = (props) => {
 export default HomePage;
 
 export async function getServerSideProps(context) {
-    let data = [];
-    let response = {};
+    // dj data
+    let djData = [];
+    let djResponse = {};
     try {
-        response = await fetch(djSpreadSheetUrl);
-        data = await response.json();
+        djResponse = await fetch(djSpreadSheetUrl);
+        djData = await djResponse.json();
+    } catch (e) {
+        console.warn(e);
+    }
+
+    // packages data
+    let packageData = [];
+    let packageResponse = {};
+    try {
+        packageResponse = await fetch(packagesSpreadsheetUrl);
+        packageData = await packageResponse.json();
     } catch (e) {
         console.warn(e);
     }
 
     return {
         props: {
-            data,
+            data: {
+                djData,
+                packageData,
+            },
         },
     };
 }

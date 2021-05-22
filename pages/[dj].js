@@ -6,6 +6,11 @@ import Container from '../components/Container';
 import {BREAKPOINT} from '../lib/styles';
 import Link from 'next/link';
 import {djSpreadSheetUrl} from '../lib/globals';
+import IconMail from '../components/Svgs/icon-mail';
+import IconTwitter from '../components/Svgs/icon-twitter';
+import IconFacebook from '../components/Svgs/icon-facebook';
+import IconInstagram from '../components/Svgs/icon-instagram';
+import IconVimeo from '../components/Svgs/icon-vimeo';
 
 const Dj = (props) => {
     const router = useRouter();
@@ -28,6 +33,7 @@ const Dj = (props) => {
     const previousDjName = previousDj?.first_name || '';
     const previousDjSlug = previousDj?.slug || '';
 
+    // dj info
     const slug = djData?.slug || '';
     const image = slug ? `/djs/${slug}.jpg` : '';
     const firstName = djData?.first_name || '';
@@ -36,6 +42,14 @@ const Dj = (props) => {
     const review = djData?.review || '';
     const reviewBy = djData?.review_by || '';
     const quote = djData?.quote || '';
+    const title = djData?.title || '';
+
+    // social links
+    const email = djData?.email || '';
+    const twitter = djData?.twitter || '';
+    const facebook = djData?.facebook || '';
+    const instagram = djData?.instagram || '';
+    const vimeo = djData?.vimeo || '';
 
     return (
         <Layout>
@@ -45,6 +59,59 @@ const Dj = (props) => {
                     <div className="sidebar">
                         <div className="image-container">
                             <div className="image" />
+                        </div>
+                        {title && (
+                            <span
+                                className="title"
+                                dangerouslySetInnerHTML={{__html: title}}
+                            />
+                        )}
+                        <div className="social">
+                            {email && (
+                                <a
+                                    className="social__link"
+                                    href={`mailto:${email}`}
+                                    target="_blank"
+                                    title={`Email: ${email}`}>
+                                    <IconMail width={20} fill="#fff" />
+                                </a>
+                            )}
+                            {twitter && (
+                                <a
+                                    className="social__link"
+                                    target="_blank"
+                                    href={twitter}
+                                    title={`${firstName} - Twitter`}>
+                                    <IconTwitter width={100} fill="#fff" />
+                                </a>
+                            )}
+                            {facebook && (
+                                <a
+                                    className="social__link"
+                                    target="_blank"
+                                    href={facebook}
+                                    title={`${firstName} - Facebook`}>
+                                    <IconFacebook width={100} fill="#fff" />
+                                </a>
+                            )}
+                            {instagram && (
+                                <a
+                                    className="social__link"
+                                    target="_blank"
+                                    href={instagram}
+                                    title={`${firstName} - Instagram`}>
+                                    <IconInstagram width={80} fill="#fff" />
+                                </a>
+                            )}
+                            {vimeo && (
+                                <a
+                                    className="social__link"
+                                    target="_blank"
+                                    href={vimeo}
+                                    title={`${firstName} - Vimeo`}>
+                                    <IconVimeo width={20} fill="#fff" />
+                                </a>
+                            )}
                         </div>
                     </div>
                     <div className="main">
@@ -211,6 +278,28 @@ const Dj = (props) => {
                                 margin-top: 0;
                             }
                         }
+
+                        .title {
+                            text-align: center;
+                            margin: 30px auto;
+                            min-width: 100%;
+                            display: block;
+                            font-size: 30px;
+                            color: var(--gray-300);
+                            font-weight: bold;
+                            font-family: var(--font-primary);
+                        }
+                        .social__link {
+                            background: var(--orange);
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin: 0 auto 15px auto;
+                        }
+
                         .bio {
                             font-size: 18px;
                             line-height: 28px;

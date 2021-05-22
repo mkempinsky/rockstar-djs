@@ -2,17 +2,22 @@ import Container from '../Container';
 import SectionHeader from '../SectionHeader';
 import Link from 'next/link';
 import {BREAKPOINT} from '../../lib/styles';
+import IconFacebook from '../Svgs/icon-facebook';
+import IconTwitter from '../Svgs/icon-twitter';
+import IconMail from '../Svgs/icon-mail';
+import IconInstagram from '../Svgs/icon-instagram';
+import IconVimeo from '../Svgs/icon-vimeo';
 
 /// https://drive.google.com/uc?id=FILE_ID
 
-const SectionDjs = ({djData = []}) => {
+const SectionDjs = ({data = []}) => {
     return (
         <section id="section-djs">
             <Container>
                 <SectionHeader title="Our DJs" subtitle="The most professional in town" />
                 <div className="dj-container">
-                    {Array.isArray(djData) &&
-                        djData.map((dj) => {
+                    {Array.isArray(data) &&
+                        data.map((dj) => {
                             const {
                                 id,
                                 first_name: firstName,
@@ -20,6 +25,11 @@ const SectionDjs = ({djData = []}) => {
                                 title,
                                 image,
                                 slug,
+                                email,
+                                twitter,
+                                facebook,
+                                instagram,
+                                vimeo,
                             } = dj;
                             const imgSrc = image || `/djs/${slug}.jpg`;
                             return (
@@ -51,6 +61,53 @@ const SectionDjs = ({djData = []}) => {
                                             className="dj__title"
                                             dangerouslySetInnerHTML={{__html: title}}
                                         />
+                                    </div>
+                                    <div className="social">
+                                        {email && (
+                                            <a
+                                                className="social__link"
+                                                href={`mailto:${email}`}
+                                                target="_blank"
+                                                title={`Email: ${email}`}>
+                                                <IconMail width={16} fill="#fff" />
+                                            </a>
+                                        )}
+                                        {twitter && (
+                                            <a
+                                                className="social__link"
+                                                target="_blank"
+                                                href={twitter}
+                                                title={`${firstName} - Twitter`}>
+                                                <IconTwitter width={100} fill="#fff" />
+                                            </a>
+                                        )}
+                                        {facebook && (
+                                            <a
+                                                className="social__link"
+                                                target="_blank"
+                                                href={facebook}
+                                                title={`${firstName} - Facebook`}>
+                                                <IconFacebook width={100} fill="#fff" />
+                                            </a>
+                                        )}
+                                        {instagram && (
+                                            <a
+                                                className="social__link"
+                                                target="_blank"
+                                                href={instagram}
+                                                title={`${firstName} - Instagram`}>
+                                                <IconInstagram width={50} fill="#fff" />
+                                            </a>
+                                        )}
+                                        {vimeo && (
+                                            <a
+                                                className="social__link"
+                                                target="_blank"
+                                                href={vimeo}
+                                                title={`${firstName} - Vimeo`}>
+                                                <IconVimeo width={20} fill="#fff" />
+                                            </a>
+                                        )}
                                     </div>
                                 </div>
                             );
@@ -105,6 +162,31 @@ const SectionDjs = ({djData = []}) => {
                         text-align: center;
                         font-style: italic;
                         font-family: var(--font-primary);
+                    }
+                    .social {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        grid-gap: 3px;
+                        margin: 15px 0 0 0;
+                    }
+                    .social__link {
+                        width: 30px;
+                        height: 30px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 100%;
+                        background: var(--orange);
+                    }
+                    @media screen and (min-width: ${BREAKPOINT}) {
+                        .social {
+                            grid-gap: 6px;
+                        }
+                        .social__link {
+                            width: 35px;
+                            height: 35px;
+                        }
                     }
                 `}
             </style>
