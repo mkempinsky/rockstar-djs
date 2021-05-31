@@ -30,8 +30,10 @@ const SectionDjs = ({data = []}) => {
                                 facebook,
                                 instagram,
                                 vimeo,
+                                vimeo_2,
                             } = dj;
-                            const imgSrc = image || `/djs/${slug}.jpg`;
+                            console.log(dj);
+                            const imgSrc = image || `/djs/${slug}.jpg` || '/avatar.svg';
                             return (
                                 <div className="card-container" key={id}>
                                     <div className="dj">
@@ -104,6 +106,15 @@ const SectionDjs = ({data = []}) => {
                                                 className="social__link"
                                                 target="_blank"
                                                 href={vimeo}
+                                                title={`${firstName} - Vimeo`}>
+                                                <IconVimeo width={20} fill="#fff" />
+                                            </a>
+                                        )}
+                                        {vimeo_2 && (
+                                            <a
+                                                className="social__link"
+                                                target="_blank"
+                                                href={vimeo_2}
                                                 title={`${firstName} - Vimeo`}>
                                                 <IconVimeo width={20} fill="#fff" />
                                             </a>

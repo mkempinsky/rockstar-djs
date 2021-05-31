@@ -1,6 +1,6 @@
 import {useRouter} from 'next/router';
 import Layout from '../components/Layout';
-import {formatGoogleSheetData} from '../lib/utils';
+import {formatGoogleSheetData, getSlug} from '../lib/utils';
 import PageHeading from '../components/PageHeading';
 import Container from '../components/Container';
 import {BREAKPOINT} from '../lib/styles';
@@ -50,6 +50,11 @@ const Dj = (props) => {
     const facebook = djData?.facebook || '';
     const instagram = djData?.instagram || '';
     const vimeo = djData?.vimeo || '';
+    const vimeo_2 = djData?.vimeo_2 || '';
+
+    // video ids
+    const vimeo_1_id = getSlug(vimeo);
+    const vimeo_2_id = getSlug(vimeo_2);
 
     return (
         <Layout>
@@ -112,6 +117,15 @@ const Dj = (props) => {
                                     <IconVimeo width={20} fill="#fff" />
                                 </a>
                             )}
+                            {vimeo_2 && (
+                                <a
+                                    className="social__link"
+                                    target="_blank"
+                                    href={vimeo_2}
+                                    title={`${firstName} - Vimeo`}>
+                                    <IconVimeo width={20} fill="#fff" />
+                                </a>
+                            )}
                         </div>
                     </div>
                     <div className="main">
@@ -164,6 +178,33 @@ const Dj = (props) => {
                                         __html: `By: ${reviewBy}`,
                                     }}
                                 />
+                            </div>
+                        )}
+                        {(vimeo || vimeo_2) && (
+                            <div className="videos">
+                                <h4>Watch {firstName}</h4>
+                                {vimeo && (
+                                    <iframe
+                                        src={`https://player.vimeo.com/video/${vimeo_1_id}`}
+                                        width="100%"
+                                        height="auto"
+                                        frameborder="0"
+                                        title={`Watch ${firstName}`}
+                                        webkitallowFullscreen
+                                        mozallowFullscreen
+                                        allowFullscreen></iframe>
+                                )}
+                                {vimeo_2 && (
+                                    <iframe
+                                        src={`https://player.vimeo.com/video/${vimeo_2_id}`}
+                                        width="100%"
+                                        height="auto"
+                                        frameborder="0"
+                                        title={`Watch ${firstName}`}
+                                        webkitallowFullscreen
+                                        mozallowFullscreen
+                                        allowFullscreen></iframe>
+                                )}
                             </div>
                         )}
                         <div className="dj-pagination">
@@ -340,6 +381,18 @@ const Dj = (props) => {
                             padding-left: 33px;
                             font-weight: bold;
                             font-family: var(--font-secondary);
+                        }
+                        .videos {
+                            margin-top: 60px;
+                        }
+                        .videos > iframe {
+                            min-width: 100%;
+                            height: 200px;
+                        }
+                        @media screen and (min-width: ${BREAKPOINT}) {
+                            .videos > iframe {
+                                height: 400px;
+                            }
                         }
                         .dj-pagination {
                             display: flex;

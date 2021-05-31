@@ -18,7 +18,7 @@ const getPackageItems = (obj) => {
 const SectionPackages = ({data = []}) => {
     const ref = useRef();
     const onScreen = useOnScreen(ref, '');
-    console.log(data);
+
     // package one
     const packageOne = data?.[0] || [];
     const packageOneTitle = packageOne?.title || '';
@@ -28,7 +28,6 @@ const SectionPackages = ({data = []}) => {
     const packageTwo = data?.[1] || [];
     const packageTwoTitle = packageTwo?.title || '';
     const packageTwoItems = getPackageItems(packageTwo);
-    console.log(packageTwoItems);
 
     // package three
     const packageThree = data?.[2] || [];
@@ -69,7 +68,6 @@ const SectionPackages = ({data = []}) => {
                         <ul>
                             {Array.isArray(packageTwoItems) &&
                                 packageTwoItems.map((item, index) => {
-                                    console.log(item);
                                     return (
                                         <li
                                             key={item}
