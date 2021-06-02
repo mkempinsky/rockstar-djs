@@ -32,7 +32,6 @@ const SectionDjs = ({data = []}) => {
                                 vimeo,
                                 vimeo_2,
                             } = dj;
-                            console.log(dj);
                             const imgSrc = image || `/djs/${slug}.jpg` || '/avatar.svg';
                             return (
                                 <div className="card-container" key={id}>
@@ -172,7 +171,7 @@ const SectionDjs = ({data = []}) => {
                         font-weight: bold;
                         text-align: center;
                         font-style: italic;
-                        font-family: var(--font-primary);
+                        font-family: var(--font-secondary);
                     }
                     .social {
                         display: flex;

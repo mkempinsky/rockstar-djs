@@ -11,6 +11,7 @@ import IconTwitter from '../components/Svgs/icon-twitter';
 import IconFacebook from '../components/Svgs/icon-facebook';
 import IconInstagram from '../components/Svgs/icon-instagram';
 import IconVimeo from '../components/Svgs/icon-vimeo';
+import Head from 'next/head';
 
 const Dj = (props) => {
     const router = useRouter();
@@ -58,6 +59,11 @@ const Dj = (props) => {
 
     return (
         <Layout>
+            <Head>
+                <title
+                    content={`Rockstar DJs | ${firstName} ${lastName} | St.Louis, MO`}
+                />
+            </Head>
             <PageHeading />
             <Container>
                 <div className="container">
@@ -348,12 +354,7 @@ const Dj = (props) => {
                             margin-bottom: 60px;
                         }
                         .bio-placeholder {
-                            min-height: 200px;
-                        }
-                        @media screen and (min-width: ${BREAKPOINT}) {
-                            .bio-placeholder {
-                                min-height: 400px;
-                            }
+                            min-height: 50px;
                         }
 
                         .quote-container {
@@ -388,10 +389,13 @@ const Dj = (props) => {
                         .videos > iframe {
                             min-width: 100%;
                             height: 200px;
+                            border-left: 3px solid var(--interactive);
+                            margin-bottom: 30px;
                         }
                         @media screen and (min-width: ${BREAKPOINT}) {
                             .videos > iframe {
                                 height: 400px;
+                                margin-bottom: 60px;
                             }
                         }
                         .dj-pagination {

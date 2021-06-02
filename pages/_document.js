@@ -8,16 +8,20 @@ export default class MyDocument extends Document {
                 <Head>
                     <meta charSet="UTF-8" />
                     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-                    <meta
-                        name="viewport"
-                        content="width=device-width, initial-scale=1, minimal-ui"
-                    />
+
                     <meta name="theme-color" content="#1D2758" />
                     <meta name="mobile-web-app-capable" content="yes" />
-                    <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
+
+                    <meta
+                        property="og:title"
+                        content="Rockstar DJs | St.Louis, MO"></meta>
+                    <meta property="og:url" content="https://rockstardjs.com"></meta>
+                    <meta property="og:image" content="/RSDJ_Facebook_meta.png"></meta>
+                    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
                     <link rel="preconnect" href="https://fonts.gstatic.com" />
+
                     <link
-                        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;600;700&family=Open+Sans:wght@300;400;700&display=swap"
+                        href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Open+Sans:wght@400;600;700&display=swap"
                         rel="stylesheet"
                     />
                     <link

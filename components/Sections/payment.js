@@ -1,21 +1,39 @@
 import {BREAKPOINT} from '../../lib/styles';
 import Container from '../Container';
 
-const paymentLink = 'https://simplecheckout.authorize.net/payment/CatalogPayment.aspx';
-
 const SectionPayment = (props) => {
     return (
         <section id="section-reviews">
             <div className="parallax">
                 <Container>
                     <h2>Payment Options</h2>
-                    <div className="button-container">
-                        <a href={paymentLink} target="_blank" title="Make a Payment">
-                            Make a Payment
-                        </a>
-                        <a href={paymentLink} target="_blank" title="Make a Deposit">
-                            Make a Deposit
-                        </a>
+                    <div className="forms-container">
+                        <form
+                            name="PrePage"
+                            method="post"
+                            target="_blank"
+                            action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
+                            {' '}
+                            <input
+                                type="hidden"
+                                name="LinkId"
+                                value="2a16d428-178c-4bb4-855f-7de0d393df7b"
+                            />{' '}
+                            <button type="submit">Make Payment Here!</button>
+                        </form>
+                        <form
+                            name="PrePage"
+                            method="post"
+                            target="_blank"
+                            action="https://Simplecheckout.authorize.net/payment/CatalogPayment.aspx">
+                            {' '}
+                            <input
+                                type="hidden"
+                                name="LinkId"
+                                value="c4a04e73-6c18-4b10-9388-bace0cd2fb72"
+                            />{' '}
+                            <button type="submit">Make a Deposit</button>{' '}
+                        </form>
                     </div>
                 </Container>
             </div>
@@ -50,7 +68,7 @@ const SectionPayment = (props) => {
                             justify-content: center;
                         }
                     }
-                    a {
+                    button {
                         background: var(--gray-400);
                         max-width: 100%;
                         width: 100%;
@@ -61,6 +79,7 @@ const SectionPayment = (props) => {
                         display: flex;
                         align-items: center;
                         justify-content: center;
+                        border: none;
                         font-weight: bold;
                         font-family: var(--font-primary);
                         box-shadow: 0px 0px 10px rgba(000, 000, 000, 0.8);
@@ -69,10 +88,27 @@ const SectionPayment = (props) => {
                         text-decoration: none;
                         margin-bottom: 30px;
                     }
-                    a:hover {
+                    @media screen and (min-width: ${BREAKPOINT}) {
+                        button {
+                            max-width: 400px;
+                        }
+                    }
+                    button:hover {
                         background: var(--orange);
                         color: #fff;
+                        cursor: pointer;
                         transition: all 0.25s;
+                    }
+                    .forms-container {
+                        display: block;
+                    }
+                    @media screen and (min-width: ${BREAKPOINT}) {
+                        .forms-container {
+                            display: grid;
+                            justify-content: center;
+                            grid-template-columns: auto auto;
+                            grid-gap: 30px;
+                        }
                     }
                 `}
             </style>
