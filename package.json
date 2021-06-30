@@ -1,5 +1,6 @@
 {
   "name": "rockstar-djs",
+  "homepage": "https://rockstardjs.com"
   "version": "0.1.0",
   "private": true,
   "scripts": {
