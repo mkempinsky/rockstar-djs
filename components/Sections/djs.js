@@ -7,18 +7,19 @@ import IconTwitter from '../Svgs/icon-twitter';
 import IconMail from '../Svgs/icon-mail';
 import IconInstagram from '../Svgs/icon-instagram';
 import IconVimeo from '../Svgs/icon-vimeo';
+import djsBackupData from '../../lib/djs.json'
 
 /// https://drive.google.com/uc?id=FILE_ID
 
 const SectionDjs = ({data = []}) => {
-    console.log('data:', data)
+
     return (
         <section id="section-djs">
             <Container>
                 <SectionHeader title="Our DJs" subtitle="The most professional in town" />
                 <div className="dj-container">
-                    {Array.isArray(data) &&
-                        data.map((dj) => {
+                    {Array.isArray(djsBackupData) &&
+                        djsBackupData.map((dj) => {
                             const {
                                 id,
                                 first_name: firstName,

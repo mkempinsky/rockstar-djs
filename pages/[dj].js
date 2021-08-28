@@ -12,12 +12,14 @@ import IconFacebook from '../components/Svgs/icon-facebook';
 import IconInstagram from '../components/Svgs/icon-instagram';
 import IconVimeo from '../components/Svgs/icon-vimeo';
 import Head from 'next/head';
+import djsBackupData from '../lib/djs.json';
 
 const Dj = (props) => {
     const router = useRouter();
     const {dj} = router.query;
     const data = props?.data || [];
-    const allDjs = formatGoogleSheetData(data);
+    //const allDjs = formatGoogleSheetData(data);
+    const allDjs = djsBackupData;
 
     let djData = allDjs.filter((x) => x?.slug === dj);
     djData = djData?.[0] || [];
