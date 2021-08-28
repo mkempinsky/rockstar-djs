@@ -12,7 +12,7 @@ import djsBackupData from '../../lib/djs.json'
 /// https://drive.google.com/uc?id=FILE_ID
 
 const SectionDjs = ({data = []}) => {
-
+    console.log('test');
     return (
         <section id="section-djs">
             <Container>
