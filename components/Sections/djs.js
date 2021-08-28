@@ -11,6 +11,7 @@ import IconVimeo from '../Svgs/icon-vimeo';
 /// https://drive.google.com/uc?id=FILE_ID
 
 const SectionDjs = ({data = []}) => {
+    console.log('data:', data)
     return (
         <section id="section-djs">
             <Container>
