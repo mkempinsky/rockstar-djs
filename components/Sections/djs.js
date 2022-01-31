@@ -7,12 +7,11 @@ import IconTwitter from '../Svgs/icon-twitter';
 import IconMail from '../Svgs/icon-mail';
 import IconInstagram from '../Svgs/icon-instagram';
 import IconVimeo from '../Svgs/icon-vimeo';
-import djsBackupData from '../../lib/djs.json'
+import djsBackupData from '../../lib/djs.json';
 
 /// https://drive.google.com/uc?id=FILE_ID
 
 const SectionDjs = ({data = []}) => {
-    console.log('test');
     return (
         <section id="section-djs">
             <Container>

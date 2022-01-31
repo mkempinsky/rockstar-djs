@@ -5,15 +5,15 @@
     "item_1": "Our Unlimited Digital Music Library",
     "item_2": "Easy-to-use Online Planning Process",
     "item_3": "Professional Sound and Lighting Display",
-    "item_4": "Includes Wireless Microphone",
-			},
+    "item_4": "Includes Wireless Microphone"
+  },
 	{
 		"id": "2",
 	  "title": "Everything Listed in our Standard Package, plus...",
     "item_1": "Room Lighting or Ceremony Music*",
     "item_2": "",
     "item_3": "",
-    "item_4": "",
+    "item_4": ""
 	},
 	{
 		"id": "3",
@@ -21,5 +21,6 @@
     "item_1": "Guaranteed choice of DJ",
     "item_2": "Choice of either:",
     "item_3": "Photobooth",
-    "item_4": "or any two of Ceremony Music*, Uplighting, Monogram",
-	},
+    "item_4": "or any two of Ceremony Music*, Uplighting, Monogram"
+	}
+]

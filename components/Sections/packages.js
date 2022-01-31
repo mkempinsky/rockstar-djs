@@ -3,8 +3,7 @@ import Container from '../Container';
 import SectionHeader from '../SectionHeader';
 import useOnScreen from '../../lib/hooks/useOnScreen';
 import {useRef} from 'react';
-import djsBackupData from '../../lib/packages.json'
-
+import djsBackupData from '../../lib/packages.json';
 
 const getPackageItems = (obj) => {
     if (!obj || typeof obj !== 'object') return [];
@@ -17,7 +16,9 @@ const getPackageItems = (obj) => {
     return arr;
 };
 
-const SectionPackages = ({data = []}) => {
+const SectionPackages = (props) => {
+    const data = djsBackupData || [];
+
     const ref = useRef();
     const onScreen = useOnScreen(ref, '');
 
